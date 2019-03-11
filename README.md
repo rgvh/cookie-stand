@@ -1,2 +1,2 @@
 # cookie-stand
-Salmon Cookie Stand
+Salmon Cookie Stores
