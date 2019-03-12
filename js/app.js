@@ -20,6 +20,13 @@ cookie stand.
 
 */
 
+// Global variables
+
+var businessHours = ['6am', '7am', '8am', '9am', '10am','11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+
+//	Random Integer Inclusive formula:
+//  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -33,10 +40,12 @@ var firstAndPike = {
     estCookieSalesPerHrArray: [],
 };
 
+
+
 firstAndPike.calculateSalesPerHour = function(){
-    for (var i = 0; i < 14; i++){
+    for (var i = 0; i < businessHours.length; i++){
         var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
-        var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
+				var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
         this.estCookieSalesPerHrArray.push(randomSalesPerHour);
     }
 console.log('Number of Cust last hour: ' + randomCustomersPerHour);
@@ -58,17 +67,17 @@ title_li.textContent = '1st and Pike';
 
 firstAndPike_ul.appendChild(title_li);
 
-    for (var i = 0; i < 14; i++) {
+    for (var j = 0; j < businessHours.length; j++) {
     var new_li = document.createElement('li');
-    var firstAndPike_salesPerHour = this.estCookieSalesPerHrArray[i];
-    new_li.textContent = `${i + 1}: ${this.estCookieSalesPerHrArray[i]}  cookies`;
-    firstAndPike_ul.appendChild(new_li);
+    var firstAndPike_salesPerHour = this.estCookieSalesPerHrArray[j];
+    new_li.textContent = `${businessHours[j]}: ${this.estCookieSalesPerHrArray[j]}  cookies`;
+		// new_li.textContent = "test";
+		firstAndPike_ul.appendChild(new_li);
     }
 };
 
-
-firstAndPike.renderEstSalesToPage();
 firstAndPike.calculateSalesPerHour();
+firstAndPike.renderEstSalesToPage();
 
 
 
