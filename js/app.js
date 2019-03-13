@@ -36,9 +36,9 @@ function getRandomIntInclusive(min, max) {
 // Create objects for each store location
 
 
-function ConstructStore(id, name, minCustPerHr, maxCustPerHr, avgCookieSale, estCookieSalesPerHrArray, totalSales){
-	this.id = id;
+function ConstructStore(name, stringName, minCustPerHr, maxCustPerHr, avgCookieSale, estCookieSalesPerHrArray, totalSales){
 	this.name = name;
+	this.stringName = stringName;
 	this.minCustPerHr = minCustPerHr;
 	this.maxCustPerHr = maxCustPerHr;
 	this.avgCookieSale = avgCookieSale;
@@ -46,15 +46,15 @@ function ConstructStore(id, name, minCustPerHr, maxCustPerHr, avgCookieSale, est
 	this.totalSales = totalSales;
 }
 
-var first_pike = new ConstructStore (firstAndPike, '1st & Pike', 23, 65, 6.3, []  );
-var sea_tac = new ConstructStore (seaTacAirport, 'SeaTac Airport', 3, 24, 1.2, [] );
-var sea_center = new ConstructStore (seattleCenter, 'Seattle Center', 11, 38, 3.7, [] );
-var cap_hill = new ConstructStore (capitolHill, 'Capitol Hill', 20, 38, 2.3, [] );
-var alki_store = new ConstructStore (alki, 'Alki', 3, 24, 1.2, [] );
+var firstAndPike = new ConstructStore (firstAndPike, '1st & Pike', 23, 65, 6.3, []  );
+var seaTacAirport = new ConstructStore (seaTacAirport, 'SeaTac Airport', 3, 24, 1.2, [] );
+var seattleCenter = new ConstructStore (seattleCenter, 'Seattle Center', 11, 38, 3.7, [] );
+var capitolHill = new ConstructStore (capitolHill, 'Capitol Hill', 20, 38, 2.3, [] );
+var alki = new ConstructStore (alki, 'Alki', 3, 24, 1.2, [] );
 
-console.log(first_pike);
-console.log(sea_tac);
-console.log(sea_center);
+console.log(firstAndPike);
+console.log(seaTacAirport);
+console.log(seaCenter);
 console.log(cap_hill);
 console.log(alki_store);
 
@@ -65,7 +65,7 @@ var SubtotalSales = 0
 // // function cookieSalesProjections(){
 // // for (var i = 0; i < salmonCookieStores.length[i]; i++);
 
-first_pike.calculateSalesPerHour = function(){
+firstAndPike.calculateSalesPerHour = function(){
   for (var i = 0; i < openHours.length; i++){
     var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
 		var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
@@ -88,7 +88,7 @@ console.log(this.estCookieSalesPerHrArray);
 }; 
   
 
-first_pike.renderEstSalesToPage = function() {
+firstAndPike.renderEstSalesToPage = function() {
 // put store sales on page
 console.log ('First and Pike going on the page');
 
@@ -109,6 +109,6 @@ firstAndPike_ul.appendChild(title_li);
     }
 };
 
-first_pike.calculateSalesPerHour();
-first_pike.renderEstSalesToPage();
+firstAndPike.calculateSalesPerHour();
+firstAndPike.renderEstSalesToPage();
 
