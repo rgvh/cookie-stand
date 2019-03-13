@@ -35,26 +35,39 @@ function getRandomIntInclusive(min, max) {
 
 // Create objects for each store location
 
-var firstAndPike = {
-  minCustPerHr: 23,
-  maxCustPerHr: 65,
-  avgCookieSale: 6.3,
-  estCookieSalesPerHrArray: [],
-};
+// var firstAndPike = {
+//   minCustPerHr: 23,
+//   maxCustPerHr: 65,
+//   avgCookieSale: 6.3,
+//   estCookieSalesPerHrArray: [],
+// };
 
-var seaTacAirport = {
-	minCustPerHr: 3,
-	maxCustPerHr: 24,
-	avgCookieSale: 1.2,
-	estCookieSalesPerHrArray: [],
-};
+// var seaTacAirport = {
+// 	minCustPerHr: 3,
+// 	maxCustPerHr: 24,
+// 	avgCookieSale: 1.2,
+// 	estCookieSalesPerHrArray: [],
+// };
 
-var seattleCenter = {
-	minCustPerHr: 11,
-	maxCustPerHr: 38,
-	avgCookieSale: 3.7,
-	estCookieSalesPerHrArray: [],
-};
+// var seattleCenter = {
+// 	minCustPerHr: 11,
+// 	maxCustPerHr: 38,
+// 	avgCookieSale: 3.7,
+// 	estCookieSalesPerHrArray: [],
+// };
+
+function ConstructStore(id, name, minCustPerHr, maxCustPerHr, avgCookieSale, estCookieSalesPerHrArray, totalSales){
+	this.id = id;
+	this.name = name;
+	this.minCustPerHr = minCustPerHr;
+	this.maxCustPerHr = maxCustPerHr;
+	this.avgCookieSale = avgCookieSale;
+	this.estCookieSalesPerHrArray = estCookieSalesPerHrArray;
+	this.totalSales = totalSales;
+}
+
+var firstAndPike = new ConstructStore (firstAndPike, '1st & Pike', 23, 65, 6.3, [], 0 );
+console.log(firstAndPike)
 
 // cookie per hour list for first store
 
@@ -64,10 +77,19 @@ firstAndPike.calculateSalesPerHour = function(){
 				var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
 				var roundedRandomSalesPerHour = Math.floor(randomSalesPerHour)
 				this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
-    }
+		}
+		
+		firstAndPike.calculatesTotalSales = function(){
+
+
+
 console.log('Number of Cust last hour: ' + randomCustomersPerHour);
 console.log('Sales last hour: ' + randomSalesPerHour);
+console.log()
 console.log(this.estCookieSalesPerHrArray);
+
+
+}
 
 }; 
   
@@ -96,78 +118,78 @@ firstAndPike_ul.appendChild(title_li);
 firstAndPike.calculateSalesPerHour();
 firstAndPike.renderEstSalesToPage();
 
-// cookie per hour list for second store
+// // cookie per hour list for second store
 
-seaTacAirport.calculateSalesPerHour = function(){
-	for (var i = 0; i < businessHours.length; i++){
-			var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
-			var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
-			var roundedRandomSalesPerHour = Math.floor(randomSalesPerHour)
-			this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
-	}
-console.log('Number of Cust last hour: ' + randomCustomersPerHour);
-console.log('Sales last hour: ' + randomSalesPerHour);
-console.log(this.estCookieSalesPerHrArray);
+// seaTacAirport.calculateSalesPerHour = function(){
+// 	for (var i = 0; i < businessHours.length; i++){
+// 			var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
+// 			var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
+// 			var roundedRandomSalesPerHour = Math.floor(randomSalesPerHour)
+// 			this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
+// 	}
+// console.log('Number of Cust last hour: ' + randomCustomersPerHour);
+// console.log('Sales last hour: ' + randomSalesPerHour);
+// console.log(this.estCookieSalesPerHrArray);
 
-}; 
-
-
-seaTacAirport.renderEstSalesToPage = function() {
-// put store sales on page
-console.log ('SeaTac going on the page');
-var seaTacAirport_ul = document.getElementById('firstAndPike');
-
-var title_li = document.createElement('li');
-
-title_li.textContent = 'SeaTac Airport';
-
-seaTacAirport_ul.appendChild(title_li);
-
-	for (var j = 0; j < businessHours.length; j++) {
-	var new_li = document.createElement('li');
-	new_li.textContent = `${businessHours[j]}: ${this.estCookieSalesPerHrArray[j]}  cookies`;
-	// new_li.textContent = "test";
-	seaTacAirport_ul.appendChild(new_li);
-	}
-};
-
-seaTacAirport.calculateSalesPerHour();
-seaTacAirport.renderEstSalesToPage();
-
-// cookie per hour list for third store
-
-seattleCenter.calculateSalesPerHour = function(){
-	for (var i = 0; i < businessHours.length; i++){
-			var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
-			var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
-			var roundedRandomSalesPerHour = Math.floor(randomSalesPerHour)
-			this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
-	}
-console.log('Number of Cust last hour: ' + randomCustomersPerHour);
-console.log('Sales last hour: ' + randomSalesPerHour);
-console.log(this.estCookieSalesPerHrArray);
-
-}; 
+// }; 
 
 
-seattleCenter.renderEstSalesToPage = function() {
-// put store sales on page
-console.log ('Seattle Center going on the page');
-var seattleCenter_ul = document.getElementById('seattleCenter');
+// seaTacAirport.renderEstSalesToPage = function() {
+// // put store sales on page
+// console.log ('SeaTac going on the page');
+// var seaTacAirport_ul = document.getElementById('firstAndPike');
 
-var title_li = document.createElement('li');
+// var title_li = document.createElement('li');
 
-title_li.textContent = 'Seattle Center';
+// title_li.textContent = 'SeaTac Airport';
 
-seattleCenter_ul.appendChild(title_li);
+// seaTacAirport_ul.appendChild(title_li);
 
-	for (var j = 0; j < businessHours.length; j++) {
-	var new_li = document.createElement('li');
-	new_li.textContent = `${businessHours[j]}: ${this.estCookieSalesPerHrArray[j]}  cookies`;
-	// new_li.textContent = "test";
-	seattleCenter_ul.appendChild(new_li);
-	}
-};
+// 	for (var j = 0; j < businessHours.length; j++) {
+// 	var new_li = document.createElement('li');
+// 	new_li.textContent = `${businessHours[j]}: ${this.estCookieSalesPerHrArray[j]}  cookies`;
+// 	// new_li.textContent = "test";
+// 	seaTacAirport_ul.appendChild(new_li);
+// 	}
+// };
 
-seattleCenter.calculateSalesPerHour();
-seattleCenter.renderEstSalesToPage();
+// seaTacAirport.calculateSalesPerHour();
+// seaTacAirport.renderEstSalesToPage();
+
+// // cookie per hour list for third store
+
+// seattleCenter.calculateSalesPerHour = function(){
+// 	for (var i = 0; i < businessHours.length; i++){
+// 			var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
+// 			var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
+// 			var roundedRandomSalesPerHour = Math.floor(randomSalesPerHour)
+// 			this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
+// 	}
+// console.log('Number of Cust last hour: ' + randomCustomersPerHour);
+// console.log('Sales last hour: ' + randomSalesPerHour);
+// console.log(this.estCookieSalesPerHrArray);
+
+// }; 
+
+
+// seattleCenter.renderEstSalesToPage = function() {
+// // put store sales on page
+// console.log ('Seattle Center going on the page');
+// var seattleCenter_ul = document.getElementById('seattleCenter');
+
+// var title_li = document.createElement('li');
+
+// title_li.textContent = 'Seattle Center';
+
+// seattleCenter_ul.appendChild(title_li);
+
+// 	for (var j = 0; j < businessHours.length; j++) {
+// 	var new_li = document.createElement('li');
+// 	new_li.textContent = `${businessHours[j]}: ${this.estCookieSalesPerHrArray[j]}  cookies`;
+// 	// new_li.textContent = "test";
+// 	seattleCenter_ul.appendChild(new_li);
+// 	}
+// };
+
+// seattleCenter.calculateSalesPerHour();
+// seattleCenter.renderEstSalesToPage();
