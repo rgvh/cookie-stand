@@ -1,5 +1,4 @@
 'use strict';
-
 /*
 There are some cookie stands that sell cookies throughout the day
 -A day is from 6:00 am to 8:00 pm (14 hours)
@@ -111,4 +110,3 @@ firstAndPike.renderEstSalesToPage = function() {
 
 firstAndPike.calculateSalesPerHour()
 firstAndPike.renderEstSalesToPage();
-
