@@ -10,9 +10,28 @@
 <body>
     <nav>
         <a href="./index.html">Home</a>
-    </nav>
-    <h1>Sales Projections</h1>
-    <table id=storeProjections><table>
+		</nav>
+		<form id="cookieStore">
+			<fieldset>
+				<legend>Add New Cookie Store</legend>
+
+				<label for = "storeName"> Store Name </label>
+					<input name="storeName" type="text">
+
+				<lable for = "minCustPerHour"> Min Customer per Hour </lable>
+					<input name="minCustPerHour" type="number">
+
+				<lable for = "maxCustPerHour"> Max Customers per Hour </lable>
+					<input name="maxCustPerHour" type="number">
+
+				<lable for ="avgCookieSale"> Avg Cookie Sale </lable>
+					<input name="avgCookieSale" type="number">
+					
+			</fieldset>
+
+		</table>
+    <h2>Sales Projections</h2>
+		<table id=storeProjections><table>
 
     <script src="./js/sales.js"></script>
 </body>
