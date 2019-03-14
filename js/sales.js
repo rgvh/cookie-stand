@@ -42,8 +42,8 @@ function CookieStore(storeName,openHours, minCustPerHr, maxCustPerHr, avgCookieS
   this.minCustPerHr = minCustPerHr;
   this.maxCustPerHr = maxCustPerHr;
   this.avgCookieSale = avgCookieSale;
-  this.estCustomersPerHrArray = estCustomersPerHrArray;
-  this.estCookieSalesPerHrArray = estCookieSalesPerHrArray;
+  this.estCustomersPerHrArray = [];
+  this.estCookieSalesPerHrArray = [];
 }
 
 
@@ -68,14 +68,14 @@ var alki = new CookieStore ('Alki',openHours, 3, 24, 1.2, [], [] );
 CookieStore.prototype.estCustomers = function(){
   var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
   console.log('random number is: ' + randomCustomersPerHour);
-  return randomCustomersPerHour;
+  this.estCustomersPerHrArray.push(this.minCustPerHr, this.maxCustPerHr);
 };
 
 // Method for finding  estimated sales per hour
 
 CookieStore.prototype.estSalesPerHr = function(index){
   var estSalesPerHr = Math.floor(this.randomCustomersPerHour * this.estCookieSalesPerHrArray[index]);
-  return estSalesPerHr;
+  this.estCookieSalesPerHrArray.push(estSalesPerHr);
 };
 
 // Method for determining est
@@ -85,12 +85,12 @@ CookieStore.prototype.totalEstCookieSales = function(){
   for(var i = 0; i < this.estSalesPerHr.length; i++){
     totalSales = totalSales + this.estSalesPerHr[i];
   }
-  console.log(this.totalSales)
+  console.log(this.totalSales);
   return totalSales;
 };
 
 CookieStore.prototype.produceFigures = function(){
-  console.log(`$(this.storeName} Results`);
+  console.log(`${this.storeName} Results`);
 
   for(var j = 0; j < openHours.length; j++){
     this.estCustomersPerHrArray.push(this.numCustomers(j));
@@ -136,6 +136,33 @@ console.log(this.estCookieSalesPerHrArray);
 // };
 
 // firstAndPike.renderEstSalesToPage();
+
+var tableEl = document.getElementById('storeProjections');
+
+function buildHeader() {
+  var header_tr = document.createElement('tr');
+  var blankSpace = document.createElement('td');
+  header_tr.appendChild(blankSpace);
+
+  for(var l = 0; l < openHours.length; l++) {
+    var nextHeader_td = document.createElement('td');
+    nextHeader_td.textContent = openHours[l];
+    header_tr.appendChild(nextHeader_td);
+  }
+  var total_td = document.createElement('td');
+  total_td.textContent = 'Totals by Location';
+  header_tr.appendChild(total_td);
+  tableEl.appendChild(header_tr);
+
+
+}
+
+buildHeader();
+
+for(var m = 0; m < 14; m++){
+  salmonCookieStores[m];
+}
+
 
 console.log(openHours);
 
