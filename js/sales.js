@@ -55,12 +55,12 @@ var alki = new CookieStore ('Alki',openHours, 3, 24, 1.2, [], [] );
 
 // Calculate customers per hour
 // firstAndPike.calculateSalesPerHour = function(){
-  // for (var i = 0; i < openHours.length; i++){
-    // var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
-    // var roundedRandomSalesPerHour = Math.floor(randomSalesPerHour);
-    // var totalSales =  + roundedRandomSalesPerHour
-    // this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
-  // }
+// for (var i = 0; i < openHours.length; i++){
+// var randomSalesPerHour = randomCustomersPerHour * this.avgCookieSale;
+// var roundedRandomSalesPerHour = Math.floor(randomSalesPerHour);
+// var totalSales =  + roundedRandomSalesPerHour
+// this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
+// }
 // Methods for constructors
 
 // Method to for finding estimated number of customers per hour
