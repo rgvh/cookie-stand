@@ -34,7 +34,7 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
 
-// Create constructor function for each store location
+// Create CONSTRUCTOR FUNCTION for each store location
 
 function CookieStore(storeName,openHours, minCustPerHr, maxCustPerHr, avgCookieSale, estCustomersPerHrArray, estCookieSalesPerHrArray){
   this.storeName = storeName;
@@ -61,24 +61,24 @@ var alki = new CookieStore ('Alki',openHours, 3, 24, 1.2, [], [] );
 // var totalSales =  + roundedRandomSalesPerHour
 // this.estCookieSalesPerHrArray.push(roundedRandomSalesPerHour);
 // }
-// Methods for constructors
+// Define METHODS for constructors
 
 // Method to for finding estimated number of customers per hour
 
 CookieStore.prototype.estCustomers = function(){
   var randomCustomersPerHour = getRandomIntInclusive(this.minCustPerHr, this.maxCustPerHr);
   console.log('random number is: ' + randomCustomersPerHour);
-  this.estCustomersPerHrArray.push(this.minCustPerHr, this.maxCustPerHr);
+  return randomCustomersPerHour;
 };
 
-// Method for finding  estimated sales per hour
+// Method for finding  modeled sales per hour
 
 CookieStore.prototype.estSalesPerHr = function(index){
   var estSalesPerHr = Math.floor(this.randomCustomersPerHour * this.estCookieSalesPerHrArray[index]);
-  this.estCookieSalesPerHrArray.push(estSalesPerHr);
+  return estSalesPerHr;
 };
 
-// Method for determining est
+// Method for determining modeled total sales
 
 CookieStore.prototype.totalEstCookieSales = function(){
   var totalSales = 0;
@@ -88,6 +88,8 @@ CookieStore.prototype.totalEstCookieSales = function(){
   console.log(this.totalSales);
   return totalSales;
 };
+
+// Method for pushing data into calculated arrays
 
 CookieStore.prototype.produceFigures = function(){
   console.log(`${this.storeName} Results`);
@@ -107,7 +109,7 @@ CookieStore.prototype.produceFigures = function(){
 
 // console.log('Number of Cust last hour: ' + randomCustomersPerHour);
 // console.log('Sales last hour: ' + estSalesPerHr);
-console.log(this.estCookieSalesPerHrArray);
+// console.log(this.estCookieSalesPerHrArray);
 
 
 // }
@@ -137,6 +139,8 @@ console.log(this.estCookieSalesPerHrArray);
 
 // firstAndPike.renderEstSalesToPage();
 
+// TABLE
+
 var tableEl = document.getElementById('storeProjections');
 
 function buildHeader() {
@@ -154,9 +158,11 @@ function buildHeader() {
   header_tr.appendChild(total_td);
   tableEl.appendChild(header_tr);
 
-
 }
 
+// This will add data ('td') to the rows ('tr')
+
+Co
 buildHeader();
 
 for(var m = 0; m < 14; m++){
