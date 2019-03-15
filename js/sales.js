@@ -23,7 +23,7 @@ cookie stand.
 
 var openHours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 
-var salmonCookieStores = [];
+var salmonCookieStores = [firstAndPike, seaTacAirport, seattleCenter, capitolHill, alki];
 
 //	Random Integer Inclusive formula:
 //  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -231,7 +231,7 @@ salmonCookieStores.push(capitolHill);
 var alki = new CookieStore ('Alki',openHours, 3, 24, 1.2, [], [] );
 salmonCookieStores.push(alki);
 
-Calculate daily total for all stores
+// Calculate daily total for all stores
 
 for(var i in salmonCookieStores) {
   salmonCookieStores[i].produceFigures();
