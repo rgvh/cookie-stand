@@ -47,6 +47,22 @@ function CookieStore(storeName,openHours, minCustPerHr, maxCustPerHr, avgCookieS
   this.estCookieSalesPerHrArray = [];
 }
 
+var storeForm = document.getElementById('cookieStoreNew');
+
+function addNewStore(event){
+  event.preventDefault();
+  
+  var name = event.target.storeName.value;
+  var min = event.target.minCustPerHour.value;
+  var max = event.target.maxCustPerHour.value;
+  var avg = event.target.avgCookieSale.value;
+
+  var someStore = new CookieStore (name,openHours, min, max, avg, [], [] );
+  salmonCookieStores.push(someStore);
+  console.log(someStore);
+  //need to rerender table with new store
+}
+storeForm.addEventListener('submit', addNewStore)
 
 
 
@@ -70,11 +86,12 @@ CookieStore.prototype.estSalesPerHr = function(index){
 // Method for determining modeled total sales
 
 CookieStore.prototype.totalEstCookieSales = function(){
+  // debugger;
   var totalSales = 0;
-  for(var i = 0; i < this.estSalesPerHr.length; i++){
-    totalSales = totalSales + this.estSalesPerHr[i];
+  for(var i = 0; i < this.estCookieSalesPerHrArray.length; i++){
+    totalSales = totalSales + this.estCookieSalesPerHrArray[i];
   }
-  console.log(this.totalSales);
+  console.log(totalSales);
   return totalSales;
 };
 
@@ -138,7 +155,7 @@ CookieStore.prototype.addData = function(next_tr, storeName, totalSales) {
   }
 
   var sumCookies = document.createElement('td')
-  sumCookies.textContent = parseInt(totalSales);
+  sumCookies.textContent = this.totalEstCookieSales();
   next_tr.appendChild(sumCookies);
 
 };
@@ -184,9 +201,9 @@ function buildFooter() {
     nextFooter_td.textContent = hourlyTotalArray[t];
     footer_tr.appendChild(nextFooter_td);
   }
-  debugger;
+  // debugger;
   var dailyTotal_td = document.createElement('td');
-  dailyTotal_td.textContent = totalSales;
+  dailyTotal_td.textContent = this.totalEstCookieSales();
   footer_tr.appendChild(dailyTotal_td);
   tableEl.appendChild(footer_tr);
 }
@@ -226,7 +243,7 @@ buildHeader();
 for(var i in salmonCookieStores){
   salmonCookieStores[i].addRow();
 }
-buildFooter();
+// buildFooter();
 console.log(openHours);
 console.log(firstAndPike);
 console.log(seaTacAirport);
