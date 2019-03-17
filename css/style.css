@@ -1,5 +1,10 @@
 /*stylesheet for cookie-stand*/
 
 body {
- background-color: #C7FEFF
+ 	background-color: #C7FEFF;
+}
+
+h1 {
+	font-family: 'Bangers', cursive;	
+	font-size: 60px;
 }
