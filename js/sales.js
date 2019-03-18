@@ -24,6 +24,8 @@ cookie stand.
 var openHours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am','11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 
 var salmonCookieStores = [];
+
+var tableEl = document.getElementById('storeProjections');
 // var salmonCookieStores = [firstAndPike, seaTacAirport, seattleCenter, capitolHill, alki];
 
 //	Random Integer Inclusive formula:
@@ -47,11 +49,14 @@ function CookieStore(storeName,openHours, minCustPerHr, maxCustPerHr, avgCookieS
   this.estCookieSalesPerHrArray = [];
 }
 
+// Adding capability of adding a new store with the form
+
+// Add data for new store
 var storeForm = document.getElementById('cookieStoreNew');
 
 function addNewStore(event){
   event.preventDefault();
-  
+
   var name = event.target.storeName.value;
   var min = event.target.minCustPerHour.value;
   var max = event.target.maxCustPerHour.value;
@@ -60,9 +65,19 @@ function addNewStore(event){
   var someStore = new CookieStore (name,openHours, min, max, avg, [], [] );
   salmonCookieStores.push(someStore);
   console.log(someStore);
-  //need to rerender table with new store
+  // Render the new store
+  someStore.render();
+  // Add the new store to the store array
+  salmonCookieStores.push(someStore);
+  // Clear the elements in the inner HTML
+  next_td.innerHTML = '';
+
+  renderTable();
+
 }
-storeForm.addEventListener('submit', addNewStore)
+
+// Add event listener
+storeForm.addEventListener('submit', addNewStore);
 
 
 
@@ -103,11 +118,11 @@ CookieStore.prototype.produceFigures = function(){
   for(var j = 0; j < openHours.length; j++){
     this.estCustomersPerHrArray.push(this.estCustomers());
     this.estCookieSalesPerHrArray.push(this.estSalesPerHr(j));
-// debugger;
+    // debugger;
     console.log(`${this.openHours[j]}: ${this.estCookieSalesPerHrArray[j]} cookies`);
   }
 
-  console.log(`Total Cookies: ${2}`);
+  console.log(`Total Cookies: ${this.totalSales}`);
 
 
 
@@ -122,7 +137,7 @@ CookieStore.prototype.produceFigures = function(){
 
 // TABLE
 
-var tableEl = document.getElementById('storeProjections');
+// var tableEl = document.getElementById('storeProjections');
 
 function buildHeader() {
   var header_tr = document.createElement('tr');
@@ -143,7 +158,7 @@ function buildHeader() {
 
 // This will add data ('td') to the rows ('tr')
 
-CookieStore.prototype.addData = function(next_tr, storeName, totalSales) {
+CookieStore.prototype.addData = function(next_tr, storeName, totalEstCookieSales) {
   var title_td = document.createElement( 'td');
   title_td.textContent = storeName;
   next_tr.appendChild(title_td);
@@ -170,24 +185,22 @@ CookieStore.prototype.addRow = function() {
 };
 
 
-buildHeader();
+// buildHeader();
 
-// for(var r = 0; r < 14; r++){
-// salmonCookieStores[r];
-// }
 
 var hourlyTotalArray = [];
-
+// debugger;
 function totalPerHour() {
   for(var r = 0; r < openHours.length; r++) {
     var sum = 0;
-    for (var i in salmonCookieStores) {
-      sum = sum + salmonCookieStores[i].estCookieSalesPerHrArray[r];
+    for (var s in salmonCookieStores) {
+      sum = sum + salmonCookieStores[s].estCookieSalesPerHrArray[r];
     }
 
     hourlyTotalArray.push(sum);
   }
 }
+console.log(hourlyTotalArray);
 
 //  This function renders the table footer
 // debugger;
@@ -203,7 +216,7 @@ function buildFooter() {
   }
   // debugger;
   var dailyTotal_td = document.createElement('td');
-  dailyTotal_td.textContent = this.totalEstCookieSales();
+  dailyTotal_td.textContent = this.hourlyTotalArray;
   footer_tr.appendChild(dailyTotal_td);
   tableEl.appendChild(footer_tr);
 }
@@ -225,25 +238,26 @@ salmonCookieStores.push(capitolHill);
 var alki = new CookieStore ('Alki',openHours, 3, 24, 1.2, [], [] );
 salmonCookieStores.push(alki);
 
+
 // Calculate daily total for all stores
 // debugger;
-for(var i in salmonCookieStores){
-  salmonCookieStores[i].produceFigures();
+for(var m in salmonCookieStores){
+  salmonCookieStores[m].produceFigures();
 }
 
 //Build Table
 
 totalPerHour();
-for(var i in salmonCookieStores){
-  salmonCookieStores[i].totalEstCookieSales();
+for(var n in salmonCookieStores){
+  salmonCookieStores[n].totalEstCookieSales();
 }
 
 buildHeader();
 
-for(var i in salmonCookieStores){
-  salmonCookieStores[i].addRow();
+for(var o in salmonCookieStores){
+  salmonCookieStores[o].addRow();
 }
-// buildFooter();
+buildFooter();
 console.log(openHours);
 console.log(firstAndPike);
 console.log(seaTacAirport);
