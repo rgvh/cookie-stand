@@ -150,7 +150,7 @@ function buildHeader() {
     header_tr.appendChild(nextHeader_td);
   }
   var total_td = document.createElement('td');
-  total_td.textContent = 'Totals by Location';
+  total_td.textContent = 'Totals by Store';
   header_tr.appendChild(total_td);
   tableEl.appendChild(header_tr);
 
