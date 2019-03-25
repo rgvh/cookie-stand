@@ -4,7 +4,7 @@ body {
  	background-color: #C7FEFF;
 }
 
-img {
+.large {
 	display: block;
 	height: 270px;
 	width: 720px;
@@ -15,12 +15,17 @@ img {
 	margin-bottom: 24px;
 }
 
-h1 {
-	font-family: 'Bangers', cursive;	
-	font-size: 72px;
-	text-align: center;
-	padding-right: 10px;
+.small {
+	height: 100%;
+	width: 120px;
+	border: 2px solid blue;
+	box-shadow: 10px 10px 10px blue;
+	border-radius: 12px;
+	margin: auto;
+	margin-bottom: 2px;
 }
+
+
 
 nav {
 	border: 2px solid blue;
@@ -35,15 +40,40 @@ nav {
 	border-radius: 12px;
 }
 
-p {
-	font-size: 18px;
+h1 {
+	font-family: 'Bangers', cursive;	
+	font-size: 72px;
 	text-align: center;
+	padding-right: 10px;
 }
 
 h2 {
 	font-family: Georgia, 'Times New Roman', Times, serif;
 	font-size: 24px;
 }
+
+h3 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 36px;
+  text-align: center;
+}
+
+ul {
+  font-size: 18px;
+	text-align: center;
+}
+
+p {
+	font-size: 18px;
+	text-align: center;
+}
+
+#caption {
+  font-size: 24px;
+  text-align: left;
+  margin-left: 80px;
+}
+
 
 table {
 	border: 2px solid blue;
@@ -59,4 +89,11 @@ tr:first-child {
 }
 tr:nth-child(2n) {
 	background-color: rgb(54, 166, 231);
+}
+
+div {
+  display: inline;
+  margin-left: 80px;
+
+
 }
